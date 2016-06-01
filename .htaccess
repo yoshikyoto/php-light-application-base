@@ -1,0 +1,10 @@
+RewriteEngine ON
+# sampleapp の部分はいい感じにURLのPATHに書き換える
+RewriteBase /sampleapp
+
+# publicディレクトリにはそのままアクセスできるようにする
+RewriteCond %{REQUEST_URI} !(^/sampleapp/public)
+# 一度書き換えられたurlにはこれを適用しない
+RewriteCond %{REQUEST_URI} !(^/sampleapp/index.php)
+# それ以外のリクエストは全部index.phpに飛ばす
+RewriteRule ^(.*)$ /sampleapp/index.php/$1
